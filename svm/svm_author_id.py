@@ -17,7 +17,9 @@ from email_preprocess import preprocess
 ### features_train and features_test are the features for the training
 ### and testing datasets, respectively
 ### labels_train and labels_test are the corresponding item labels
+t0 = time()
 features_train, features_test, labels_train, labels_test = preprocess()
+print "preprocessing time:", round(time()-t0, 3), "s"
 
 
 
@@ -28,3 +30,22 @@ features_train, features_test, labels_train, labels_test = preprocess()
 #########################################################
 
 
+from sklearn.svm import SVC
+
+clf = SVC(C = 10000, kernel = 'rbf')
+# features_train = features_train[:len(features_train)/100] 
+# labels_train = labels_train[:len(labels_train)/100] 
+t0 = time()
+clf.fit(features_train, labels_train)
+print "training time:", round(time()-t0, 3), "s"
+t0 = time()
+pred = clf.predict(features_test)
+print "# of Chris is", list(pred).count(1)
+print "predicting time:", round(time()-t0, 3), "s"
+
+from sklearn.metrics import accuracy_score
+print "accuracy is", accuracy_score(pred, labels_test)
+
+print "10th is", clf.predict(features_test[10])
+print "26th is", clf.predict(features_test[26])
+print "50th is", clf.predict(features_test[50])

@@ -14,6 +14,23 @@ data = featureFormat(data_dict, features)
 
 
 ### your code below
+MaxBonus = max(data, key = lambda x:x[1])[1]
 
+for key, value in data_dict.items():
+    if value["bonus"] == MaxBonus:
+        data_dict.pop(key, 0)
+        break
 
+data = featureFormat(data_dict, features)
+
+for point in data:
+    salary = point[0]
+    bonus = point[1]
+    if salary > 1e6 and bonus > 5e6:
+        print salary, bonus
+    matplotlib.pyplot.scatter( salary, bonus )
+
+matplotlib.pyplot.xlabel("salary")
+matplotlib.pyplot.ylabel("bonus")
+matplotlib.pyplot.show()
 

@@ -72,6 +72,9 @@ for d in data:
     if d[2] != 0:
         d[2] = (d[2] - MinStockOptions) * 1.0 / (MaxStockOptions - MinStockOptions)
 
+print "Salary of 200,000 becomes %f " % ((200000 - MinSalary) * 1.0 / (MaxSalary - MinSalary))
+print "Stock option of 1,000,000 becomes %f " % ((1000000 - MinStockOptions) * 1.0 / (MaxStockOptions - MinStockOptions))
+
 ### in the "clustering with 3 features" part of the mini-project,
 ### you'll want to change this line to 
 ### for f1, f2, _ in finance_features:

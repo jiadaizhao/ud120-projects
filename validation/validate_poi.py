@@ -40,3 +40,16 @@ features_train, features_test, labels_train, lables_test = cross_validation.trai
 clf.fit(features_train, labels_train)
 print "With cross validation, accuracy is ", clf.score(features_test, lables_test)
 
+poi_num = 0
+for l in lables_test:
+    if l == 1:
+        poi_num += 1
+print "POI number is ", poi_num
+print "People number is ", len(lables_test)
+
+pred = clf.predict(features_test)
+true_positive_num = 0
+for p, l in zip(pred, lables_test):
+    if l ==1 and p == l:
+        true_positive_num += 1
+print "True positive number is ", true_positive_num
